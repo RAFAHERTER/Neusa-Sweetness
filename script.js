@@ -1,4 +1,4 @@
-﻿const WHATSAPP_NUMBER = "";
+﻿const WHATSAPP_NUMBER = "5519993492366";
 const INSTAGRAM_PROFILE = "https://www.instagram.com/SeuPerfilAqui";
 const DOCERIA_NOME = "NeusaSweetness";
 
@@ -172,11 +172,11 @@ function setupExternalLinks() {
   });
 
   const whatsappButtons = document.querySelectorAll(
-    ".header-button, .primary-button, .secondary-button, .floating-whatsapp"
+    ".header-button, .primary-button, .secondary-button, .floating-whatsapp, .social-link[href='#contato']"
   );
 
   whatsappButtons.forEach((button) => {
-    if (button.id === "floating-whatsapp") {
+    if (button.id === "floating-whatsapp" || button.getAttribute("aria-label") === "WhatsApp") {
       setWhatsAppLinksFromButton(button);
       return;
     }
