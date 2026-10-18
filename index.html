@@ -1,12 +1,188 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Neusa Sweetness</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <h1>Neusa Sweetness</h1>
-</body>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Doceria artesanal com brigadeiros gourmet, sabores exclusivos e atendimento pelo WhatsApp."
+    />
+    <title>NeusaSweetness | Doceria Artesanal</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a href="#inicio" class="brand" aria-label="Ir para a página inicial">
+          <span class="brand-mark">N</span>
+          <span>NeusaSweetness</span>
+        </a>
+
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-label="Abrir menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <nav class="main-nav" aria-label="Menu principal">
+          <a href="#inicio">Início</a>
+          <a href="#produtos">Produtos</a>
+          <a href="#sobre">Sobre</a>
+          <a href="#contato">Contato</a>
+        </nav>
+
+        <div class="header-actions">
+          <a
+            class="social-link social-link--header"
+            href="https://www.instagram.com/SeuPerfilAqui"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Instagram da NeusaSweetness"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm5 3.5A5.5 5.5 0 1 1 6.5 13 5.5 5.5 0 0 1 12 7.5zm0 2A3.5 3.5 0 1 0 15.5 13 3.5 3.5 0 0 0 12 9.5zm5.25-3.75a1.25 1.25 0 1 1-1.25 1.25 1.25 1.25 0 0 1 1.25-1.25z" />
+            </svg>
+          </a>
+          <a class="primary-button header-button" href="#contato">Faça seu pedido</a>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section id="inicio" class="hero section-spacing">
+        <div class="container hero-layout">
+          <div class="hero-copy">
+            <p class="eyebrow">Doceria artesanal</p>
+            <h1>Pequenos doces, grandes experiências.</h1>
+            <p class="lead">
+              Brigadeiros gourmet feitos com atenção aos detalhes, texturas cremosas e sabores que transformam o simples em um momento memorável.
+            </p>
+            <div class="hero-actions">
+              <a class="primary-button" href="#produtos">Conheça nossos sabores</a>
+              <a class="secondary-button" href="#contato">Faça seu pedido</a>
+            </div>
+          </div>
+
+          <div class="hero-visual" aria-label="Imagem de brigadeiros artesanais em destaque">
+            <div class="hero-image-card">
+              <span class="floating-badge">Brigadeiros artesanais</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="produtos" class="products section-spacing">
+        <div class="container">
+          <div class="section-heading">
+            <p class="eyebrow">Cardápio</p>
+            <h2>Sabores que encantam e surpreendem</h2>
+          </div>
+
+          <div id="product-grid" class="product-grid" aria-live="polite"></div>
+        </div>
+      </section>
+
+      <section id="sobre" class="about section-spacing">
+        <div class="container about-layout">
+          <div class="about-copy">
+            <p class="eyebrow">Sobre nós</p>
+            <h2>Feito à mão, pensado nos detalhes.</h2>
+            <p>
+              A produção é pensada com cuidado, respeitando receitas e combinações que valorizam a consistência, o aroma e a personalidade de cada sabor. Cada brigadeiro é preparado de forma artesanal, com foco em uma experiência agradável e memorável.
+            </p>
+            <p>
+              O objetivo é oferecer doces com identidade, variedade de texturas e uma apresentação que convida ao sabor. A criação de cada receita pode ser ajustada conforme a proposta e a ocasião.
+            </p>
+          </div>
+
+          <div class="about-visual" aria-label="Espaço reservado para foto do processo de produção">
+            <div class="photo-placeholder">
+              <span>Espaço para foto da produção</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="contato" class="contact section-spacing">
+        <div class="container contact-panel">
+          <div>
+            <p class="eyebrow">Contato</p>
+            <h2>Qual será o seu próximo sabor favorito?</h2>
+          </div>
+
+          <p>
+            Consulte os sabores disponíveis e descubra a combinação ideal para presentear, celebrar ou simplesmente saborear.
+          </p>
+
+          <div class="contact-actions">
+            <a class="primary-button" href="#contato">Falar no WhatsApp</a>
+            <a
+              class="secondary-button"
+              href="https://www.instagram.com/SeuPerfilAqui"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Ver Instagram
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-layout">
+        <div>
+          <a href="#inicio" class="brand brand--footer">NeusaSweetness</a>
+        </div>
+
+        <nav class="footer-nav" aria-label="Navegação do rodapé">
+          <a href="#inicio">Início</a>
+          <a href="#produtos">Produtos</a>
+          <a href="#sobre">Sobre</a>
+          <a href="#contato">Contato</a>
+        </nav>
+
+        <div class="footer-socials">
+          <a
+            class="social-link"
+            href="https://www.instagram.com/SeuPerfilAqui"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Instagram"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm5 3.5A5.5 5.5 0 1 1 6.5 13 5.5 5.5 0 0 1 12 7.5zm0 2A3.5 3.5 0 1 0 15.5 13 3.5 3.5 0 0 0 12 9.5zm5.25-3.75a1.25 1.25 0 1 1-1.25 1.25 1.25 1.25 0 0 1 1.25-1.25z" />
+            </svg>
+          </a>
+          <a
+            class="social-link"
+            href="#contato"
+            aria-label="WhatsApp"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 2a10 10 0 0 0-8.7 15.2L2 22l5-1.3A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 20zm4.5-6.1c-.2-.1-1.3-.6-1.5-.7-.2-.1-.4-.1-.5.1s-.7.7-.8.9-.3.1-.5 0A6.7 6.7 0 0 1 9.8 12a7.5 7.5 0 0 1-1.4-3.5c-.1-.4.1-.5.3-.7l.2-.2c.1-.1.2-.2.3-.4.1-.1.1-.3 0-.4l-.2-.6c-.1-.2-.4-.5-.7-.7-.2-.2-.4-.2-.5-.2h-.4c-.2 0-.5.1-.7.4-.2.3-.8.8-.8 2s.8 2.3 1 2.4c.1.1 1.7 2.6 4.1 3.6.6.3 1.1.4 1.5.5.6.2 1.2.2 1.7.1.5-.1 1.3-.5 1.5-1 .2-.5.2-.9.1-1-.1-.1-.3-.1-.5-.2z" />
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="container footer-bottom">
+        <p>© <span id="current-year"></span> NeusaSweetness. Todos os direitos reservados.</p>
+      </div>
+    </footer>
+
+    <a
+      id="floating-whatsapp"
+      class="floating-whatsapp"
+      href="#contato"
+      aria-label="Abrir WhatsApp"
+      title="Abrir WhatsApp"
+    >
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M12 2a10 10 0 0 0-8.7 15.2L2 22l5-1.3A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 20zm4.5-6.1c-.2-.1-1.3-.6-1.5-.7-.2-.1-.4-.1-.5.1s-.7.7-.8.9-.3.1-.5 0A6.7 6.7 0 0 1 9.8 12a7.5 7.5 0 0 1-1.4-3.5c-.1-.4.1-.5.3-.7l.2-.2c.1-.1.2-.2.3-.4.1-.1.1-.3 0-.4l-.2-.6c-.1-.2-.4-.5-.7-.7-.2-.2-.4-.2-.5-.2h-.4c-.2 0-.5.1-.7.4-.2.3-.8.8-.8 2s.8 2.3 1 2.4c.1.1 1.7 2.6 4.1 3.6.6.3 1.1.4 1.5.5.6.2 1.2.2 1.7.1.5-.1 1.3-.5 1.5-1 .2-.5.2-.9.1-1-.1-.1-.3-.1-.5-.2z" />
+      </svg>
+    </a>
+
+    <script src="script.js"></script>
+  </body>
 </html>
