@@ -95,7 +95,7 @@ function renderProducts() {
         : "";
       const imageMarkup = produto.imagem
         ? `<img src="${escapeHTML(produto.imagem)}" alt="${escapeHTML(produto.nome)}" loading="lazy" width="600" height="600" />`
-        : `<div class="product-image-placeholder variant-${produto.id}"><span>${escapeHTML(produto.nome)}</span></div>`;
+        : `<div class="product-image-placeholder"></div>`;
 
       return `
         <article class="product-card">
