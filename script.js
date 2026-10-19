@@ -64,6 +64,38 @@ function setupWhatsAppLinks() {
   });
 }
 
+function setupProductCarousels() {
+  document.querySelectorAll(".product-image").forEach((carousel) => {
+    const images = Array.from(carousel.children).filter(
+      (child) => child instanceof HTMLImageElement,
+    );
+    let currentIndex = images.findIndex((image) => !image.hidden);
+
+    if (currentIndex < 0 && images.length > 0) {
+      currentIndex = 0;
+      images[currentIndex].hidden = false;
+    }
+
+    const showImage = (direction) => {
+      if (images.length === 0) {
+        return;
+      }
+
+      currentIndex = (currentIndex + direction + images.length) % images.length;
+      images.forEach((image, index) => {
+        image.hidden = index !== currentIndex;
+      });
+    };
+
+    carousel.querySelector("[data-carousel-prev]")?.addEventListener("click", () => {
+      showImage(-1);
+    });
+    carousel.querySelector("[data-carousel-next]")?.addEventListener("click", () => {
+      showImage(1);
+    });
+  });
+}
+
 function setCurrentYear() {
   const yearElement = document.getElementById("current-year");
   if (yearElement) {
@@ -73,6 +105,7 @@ function setCurrentYear() {
 
 document.addEventListener("DOMContentLoaded", () => {
   setupNavigation();
+  setupProductCarousels();
   setupWhatsAppLinks();
   setCurrentYear();
 });

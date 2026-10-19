@@ -368,16 +368,61 @@ p {
 .product-image {
   position: relative;
   aspect-ratio: 4 / 3;
+  overflow: hidden;
 }
 
 .product-image > img {
+  position: absolute;
+  inset: 0;
   width: 100%;
-  aspect-ratio: 4 / 3;
+  height: 100%;
   object-fit: cover;
 }
 
+.product-image > img[hidden] {
+  display: none;
+}
+
 .product-image-placeholder {
+  position: absolute;
+  inset: 0;
   aspect-ratio: 4 / 3;
+}
+
+.carousel-control {
+  position: absolute;
+  top: 50%;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  border-radius: 50%;
+  background: rgba(43, 27, 20, 0.48);
+  color: #fff;
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  transform: translateY(-50%);
+  transition: background 0.2s ease, opacity 0.2s ease;
+}
+
+.carousel-control:hover {
+  background: rgba(43, 27, 20, 0.78);
+}
+
+.carousel-control--previous {
+  left: 0.65rem;
+}
+
+.carousel-control--next {
+  right: 0.65rem;
+}
+
+.carousel-control:focus-visible {
+  outline-color: #fff;
 }
 
 .product-body {
