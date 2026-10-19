@@ -437,12 +437,6 @@ p {
   margin-top: auto;
 }
 
-.product-price {
-  font-size: 1.1rem;
-  font-weight: 800;
-  color: var(--chocolate-900);
-}
-
 .product-action {
   min-height: 42px;
   padding: 0.75rem 1rem;
@@ -476,8 +470,7 @@ p {
   min-height: 320px;
 }
 
-.photo-placeholder > span,
-.product-image-placeholder > span {
+.photo-placeholder > span {
   position: relative;
   z-index: 1;
   padding: 0.4rem 0.7rem;
