@@ -1,5 +1,5 @@
 ﻿const WHATSAPP_NUMBER = "5519993492366";
-const INSTAGRAM_PROFILE = "https://www.instagram.com/SeuPerfilAqui";
+const INSTAGRAM_PROFILE = "https://www.instagram.com/neusasweetness/";
 const DOCERIA_NOME = "NeusaSweetness";
 
 const produtos = [
@@ -163,7 +163,7 @@ function setWhatsAppLinksFromButton(button) {
 }
 
 function setupExternalLinks() {
-  const instagramLinks = document.querySelectorAll('a[href="https://www.instagram.com/SeuPerfilAqui"]');
+  const instagramLinks = document.querySelectorAll('a[href="https://www.instagram.com/neusasweetness/"]');
 
   instagramLinks.forEach((link) => {
     link.href = INSTAGRAM_PROFILE;
