@@ -7,15 +7,40 @@
       name="description"
       content="Doceria artesanal com brigadeiros gourmet, sabores exclusivos e atendimento pelo WhatsApp."
     />
-    <title>NeusaSweetness</title>
+    <meta name="theme-color" content="#5e3021" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Neusa Sweetness | Brigadeiros Gourmet Artesanais" />
+    <meta
+      property="og:description"
+      content="Doceria artesanal com brigadeiros gourmet, sabores exclusivos e atendimento pelo WhatsApp."
+    />
+    <meta property="og:image" content="Imagens/logo.jpg" />
+    <meta property="og:locale" content="pt_BR" />
+    <title>Neusa Sweetness | Brigadeiros Gourmet Artesanais</title>
+    <link rel="icon" href="Imagens/logo.jpg" type="image/jpeg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
+    <svg hidden>
+      <symbol id="i-instagram" viewBox="0 0 24 24">
+        <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm5 3.5A5.5 5.5 0 1 1 6.5 13 5.5 5.5 0 0 1 12 7.5zm0 2A3.5 3.5 0 1 0 15.5 13 3.5 3.5 0 0 0 12 9.5zm5.25-3.75a1.25 1.25 0 1 1-1.25 1.25 1.25 1.25 0 0 1 1.25-1.25z" />
+      </symbol>
+      <symbol id="i-whatsapp" viewBox="0 0 24 24">
+        <path d="M12 2a10 10 0 0 0-8.7 15.2L2 22l5-1.3A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 20zm4.5-6.1c-.2-.1-1.3-.6-1.5-.7-.2-.1-.4-.1-.5.1s-.7.7-.8.9-.3.1-.5 0A6.7 6.7 0 0 1 9.8 12a7.5 7.5 0 0 1-1.4-3.5c-.1-.4.1-.5.3-.7l.2-.2c.1-.1.2-.2.3-.4.1-.1.1-.3 0-.4l-.2-.6c-.1-.2-.4-.5-.7-.7-.2-.2-.4-.2-.5-.2h-.4c-.2 0-.5.1-.7.4-.2.3-.8.8-.8 2s.8 2.3 1 2.4c.1.1 1.7 2.6 4.1 3.6.6.3 1.1.4 1.5.5.6.2 1.2.2 1.7.1.5-.1 1.3-.5 1.5-1 .2-.5.2-.9.1-1-.1-.1-.3-.1-.5-.2z" />
+      </symbol>
+    </svg>
+
     <header class="site-header">
       <div class="container header-inner">
         <a href="#inicio" class="brand" aria-label="Ir para a página inicial">
-          <span class="brand-mark">N</span>
-          <span>NeusaSweetness</span>
+          <img class="brand-mark" src="Imagens/logo.jpg" alt="" width="40" height="40" />
+          <span>Neusa Sweetness</span>
         </a>
 
         <button class="nav-toggle" type="button" aria-expanded="false" aria-label="Abrir menu">
@@ -25,10 +50,14 @@
         </button>
 
         <nav class="main-nav" aria-label="Menu principal">
-          <a href="#inicio">Início</a>
+          <a href="#inicio" class="nav-link--mobile-hidden">Início</a>
           <a href="#produtos">Produtos</a>
-          <a href="#sobre">Sobre</a>
-          <a href="#contato">Contato</a>
+          <a href="#como-pedir">Como pedir</a>
+          <a href="#kits">Kits</a>
+          <a href="#sobre" class="nav-link--mobile-hidden">Sobre</a>
+          <a href="#faq">FAQ</a>
+          <a href="#contato" class="nav-link--mobile-hidden">Contato</a>
+          <a class="primary-button mobile-nav-button" href="#" data-whatsapp>Faça seu pedido</a>
         </nav>
 
         <div class="header-actions">
@@ -37,13 +66,11 @@
             href="https://www.instagram.com/neusasweetness/"
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="Instagram da NeusaSweetness"
+            aria-label="Instagram da Neusa Sweetness"
           >
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm5 3.5A5.5 5.5 0 1 1 6.5 13 5.5 5.5 0 0 1 12 7.5zm0 2A3.5 3.5 0 1 0 15.5 13 3.5 3.5 0 0 0 12 9.5zm5.25-3.75a1.25 1.25 0 1 1-1.25 1.25 1.25 1.25 0 0 1 1.25-1.25z" />
-            </svg>
+            <svg aria-hidden="true"><use href="#i-instagram"></use></svg>
           </a>
-          <a class="primary-button header-button" href="#contato">Faça seu pedido</a>
+          <a class="primary-button header-button" href="#" data-whatsapp>Faça seu pedido</a>
         </div>
       </div>
     </header>
@@ -59,11 +86,12 @@
             </p>
             <div class="hero-actions">
               <a class="primary-button" href="#produtos">Conheça nossos sabores</a>
-              <a class="secondary-button" href="#contato">Faça seu pedido</a>
+              <a class="secondary-button" href="#" data-whatsapp>Faça seu pedido</a>
             </div>
           </div>
 
-          <div class="hero-visual" aria-label="Imagem de brigadeiros artesanais em destaque">
+          <!-- Ao receber uma foto real, substitua este placeholder por <img> com alt descritivo. -->
+          <div class="hero-visual" aria-hidden="true">
             <div class="hero-image-card">
               <span class="floating-badge">Brigadeiros artesanais</span>
             </div>
@@ -78,7 +106,109 @@
             <h2>Sabores que encantam e surpreendem</h2>
           </div>
 
-          <div id="product-grid" class="product-grid" aria-live="polite"></div>
+          <div id="product-grid" class="product-grid"></div>
+          <noscript>
+            <p>
+              Ative o JavaScript para ver o cardápio ou fale conosco pelo WhatsApp.
+              <a
+                href="https://wa.me/5519993492366?text=Ol%C3%A1!%20Gostaria%20de%20conhecer%20os%20sabores%20e%20fazer%20meu%20pedido."
+                data-whatsapp
+              >Fale conosco pelo WhatsApp</a>
+            </p>
+          </noscript>
+        </div>
+      </section>
+
+      <section id="como-pedir" class="section-spacing">
+        <div class="container">
+          <div class="section-heading">
+            <p class="eyebrow">Como pedir</p>
+            <h2>Seu pedido em três passos</h2>
+          </div>
+
+          <div class="product-grid">
+            <article class="product-card">
+              <div class="product-body">
+                <span class="step-number">1</span>
+                <h3>Escolha os sabores</h3>
+                <p class="product-description">Veja as opções disponíveis no cardápio.</p>
+              </div>
+            </article>
+            <article class="product-card">
+              <div class="product-body">
+                <span class="step-number">2</span>
+                <h3>Chame no WhatsApp</h3>
+                <p class="product-description">Envie sua seleção para conversar sobre o pedido.</p>
+              </div>
+            </article>
+            <article class="product-card">
+              <div class="product-body">
+                <span class="step-number">3</span>
+                <h3>Combine entrega ou retirada</h3>
+                <p class="product-description">Alinhe conosco a melhor forma de receber o pedido.</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="kits" class="section-spacing">
+        <div class="container">
+          <div class="section-heading">
+            <p class="eyebrow">Encomendas</p>
+            <h2>Kits e encomendas</h2>
+          </div>
+
+          <div class="product-grid">
+            <article class="product-card">
+              <div class="product-body">
+                <h3>Kit 12 unidades</h3>
+                <p class="product-description">Valores sob consulta</p>
+                <a
+                  class="product-action"
+                  href="#"
+                  data-whatsapp
+                  data-whatsapp-message="Olá! Gostaria de consultar o Kit com 12 unidades da Neusa Sweetness."
+                >Consultar pelo WhatsApp</a>
+              </div>
+            </article>
+            <article class="product-card">
+              <div class="product-body">
+                <h3>Kit 25 unidades</h3>
+                <p class="product-description">Valores sob consulta</p>
+                <a
+                  class="product-action"
+                  href="#"
+                  data-whatsapp
+                  data-whatsapp-message="Olá! Gostaria de consultar o Kit com 25 unidades da Neusa Sweetness."
+                >Consultar pelo WhatsApp</a>
+              </div>
+            </article>
+            <article class="product-card">
+              <div class="product-body">
+                <h3>Kit 50 unidades</h3>
+                <p class="product-description">Valores sob consulta</p>
+                <a
+                  class="product-action"
+                  href="#"
+                  data-whatsapp
+                  data-whatsapp-message="Olá! Gostaria de consultar o Kit com 50 unidades da Neusa Sweetness."
+                >Consultar pelo WhatsApp</a>
+              </div>
+            </article>
+            <article class="product-card">
+              <div class="product-body">
+                <h3>Encomendas para festas</h3>
+                <p class="product-description">Valores sob consulta</p>
+                <a
+                  class="product-action"
+                  href="#"
+                  data-whatsapp
+                  data-whatsapp-message="Olá! Gostaria de conversar sobre uma encomenda para festa com a Neusa Sweetness."
+                >Consultar pelo WhatsApp</a>
+              </div>
+            </article>
+          </div>
         </div>
       </section>
 
@@ -88,17 +218,49 @@
             <p class="eyebrow">Sobre nós</p>
             <h2>Feito à mão, pensado nos detalhes.</h2>
             <p>
-              A produção é pensada com cuidado, respeitando receitas e combinações que valorizam a consistência, o aroma e a personalidade de cada sabor. Cada brigadeiro é preparado de forma artesanal, com foco em uma experiência agradável e memorável.
+              Olá! Eu sou [COMPLETAR: nome completo] e a história da Neusa Sweetness começou
+              [COMPLETAR: conte sua história].
             </p>
             <p>
-              O objetivo é oferecer doces com identidade, variedade de texturas e uma apresentação que convida ao sabor. A criação de cada receita pode ser ajustada conforme a proposta e a ocasião.
+              Preparo brigadeiros de forma artesanal, com cuidado e atenção aos detalhes.
+              Estou há [COMPLETAR: tempo de experiência] na confeitaria e quero oferecer
+              doces com identidade, variedade de texturas e sabores feitos para momentos especiais.
             </p>
           </div>
 
-          <div class="about-visual" aria-label="Espaço reservado para foto do processo de produção">
+          <!-- Ao receber uma foto real, substitua este placeholder por <img> com alt descritivo. -->
+          <div class="about-visual" aria-hidden="true">
             <div class="photo-placeholder">
               <span>Espaço para foto da produção</span>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="faq" class="section-spacing">
+        <div class="container">
+          <div class="section-heading">
+            <p class="eyebrow">FAQ</p>
+            <h2>Perguntas frequentes</h2>
+          </div>
+
+          <div class="faq-list">
+            <details class="faq-item">
+              <summary>Qual é o prazo de antecedência para encomendas?</summary>
+              <p>[COMPLETAR]</p>
+            </details>
+            <details class="faq-item">
+              <summary>Vocês fazem entrega ou retirada?</summary>
+              <p>[COMPLETAR]</p>
+            </details>
+            <details class="faq-item">
+              <summary>Como devo conservar os brigadeiros?</summary>
+              <p>[COMPLETAR]</p>
+            </details>
+            <details class="faq-item">
+              <summary>Quais são as formas de pagamento?</summary>
+              <p>[COMPLETAR]</p>
+            </details>
           </div>
         </div>
       </section>
@@ -115,7 +277,7 @@
           </p>
 
           <div class="contact-actions">
-            <a class="primary-button" href="#contato">Falar no WhatsApp</a>
+            <a class="primary-button" href="#" data-whatsapp>Falar no WhatsApp</a>
             <a
               class="secondary-button"
               href="https://www.instagram.com/neusasweetness/"
@@ -132,13 +294,16 @@
     <footer class="site-footer">
       <div class="container footer-layout">
         <div>
-          <a href="#inicio" class="brand brand--footer">NeusaSweetness</a>
+          <a href="#inicio" class="brand brand--footer">Neusa Sweetness</a>
         </div>
 
         <nav class="footer-nav" aria-label="Navegação do rodapé">
           <a href="#inicio">Início</a>
           <a href="#produtos">Produtos</a>
+          <a href="#como-pedir">Como pedir</a>
+          <a href="#kits">Kits</a>
           <a href="#sobre">Sobre</a>
+          <a href="#faq">FAQ</a>
           <a href="#contato">Contato</a>
         </nav>
 
@@ -150,37 +315,33 @@
             rel="noopener noreferrer"
             aria-label="Instagram"
           >
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm5 3.5A5.5 5.5 0 1 1 6.5 13 5.5 5.5 0 0 1 12 7.5zm0 2A3.5 3.5 0 1 0 15.5 13 3.5 3.5 0 0 0 12 9.5zm5.25-3.75a1.25 1.25 0 1 1-1.25 1.25 1.25 1.25 0 0 1 1.25-1.25z" />
-            </svg>
+            <svg aria-hidden="true"><use href="#i-instagram"></use></svg>
           </a>
           <a
             class="social-link"
-            href="#contato"
-            aria-label="WhatsApp"
+            href="#"
+            data-whatsapp
+            aria-label="Falar no WhatsApp"
           >
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M12 2a10 10 0 0 0-8.7 15.2L2 22l5-1.3A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 20zm4.5-6.1c-.2-.1-1.3-.6-1.5-.7-.2-.1-.4-.1-.5.1s-.7.7-.8.9-.3.1-.5 0A6.7 6.7 0 0 1 9.8 12a7.5 7.5 0 0 1-1.4-3.5c-.1-.4.1-.5.3-.7l.2-.2c.1-.1.2-.2.3-.4.1-.1.1-.3 0-.4l-.2-.6c-.1-.2-.4-.5-.7-.7-.2-.2-.4-.2-.5-.2h-.4c-.2 0-.5.1-.7.4-.2.3-.8.8-.8 2s.8 2.3 1 2.4c.1.1 1.7 2.6 4.1 3.6.6.3 1.1.4 1.5.5.6.2 1.2.2 1.7.1.5-.1 1.3-.5 1.5-1 .2-.5.2-.9.1-1-.1-.1-.3-.1-.5-.2z" />
-            </svg>
+            <svg aria-hidden="true"><use href="#i-whatsapp"></use></svg>
           </a>
         </div>
       </div>
 
       <div class="container footer-bottom">
-        <p>© <span id="current-year"></span> NeusaSweetness. </p>
+        <p>© <span id="current-year"></span> Neusa Sweetness. Todos os direitos reservados.</p>
       </div>
     </footer>
 
     <a
       id="floating-whatsapp"
       class="floating-whatsapp"
-      href="#contato"
-      aria-label="Abrir WhatsApp"
+      href="#"
+      data-whatsapp
+      aria-label="Falar no WhatsApp"
       title="Abrir WhatsApp"
     >
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M12 2a10 10 0 0 0-8.7 15.2L2 22l5-1.3A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 20zm4.5-6.1c-.2-.1-1.3-.6-1.5-.7-.2-.1-.4-.1-.5.1s-.7.7-.8.9-.3.1-.5 0A6.7 6.7 0 0 1 9.8 12a7.5 7.5 0 0 1-1.4-3.5c-.1-.4.1-.5.3-.7l.2-.2c.1-.1.2-.2.3-.4.1-.1.1-.3 0-.4l-.2-.6c-.1-.2-.4-.5-.7-.7-.2-.2-.4-.2-.5-.2h-.4c-.2 0-.5.1-.7.4-.2.3-.8.8-.8 2s.8 2.3 1 2.4c.1.1 1.7 2.6 4.1 3.6.6.3 1.1.4 1.5.5.6.2 1.2.2 1.7.1.5-.1 1.3-.5 1.5-1 .2-.5.2-.9.1-1-.1-.1-.3-.1-.5-.2z" />
-      </svg>
+      <svg aria-hidden="true"><use href="#i-whatsapp"></use></svg>
     </a>
 
     <script src="script.js"></script>

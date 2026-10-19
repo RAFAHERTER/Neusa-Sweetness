@@ -1,6 +1,4 @@
-﻿const WHATSAPP_NUMBER = "5519993492366";
-const INSTAGRAM_PROFILE = "https://www.instagram.com/neusasweetness/";
-const DOCERIA_NOME = "NeusaSweetness";
+const WHATSAPP_NUMBER = "5519993492366";
 
 const produtos = [
   {
@@ -9,7 +7,7 @@ const produtos = [
     descricao: "O clássico brigadeiro de chocolate, com sabor intenso e textura cremosa.",
     preco: "",
     imagem: "",
-    categoria: "Clássico",
+    categoria: "Clássicos",
     badge: "",
   },
   {
@@ -18,7 +16,7 @@ const produtos = [
     descricao: "A combinação do brigadeiro de chocolate com o frescor e a suculência da uva.",
     preco: "",
     imagem: "",
-    categoria: "Frutas",
+    categoria: "Clássicos",
     badge: "",
   },
   {
@@ -27,7 +25,7 @@ const produtos = [
     descricao: "Chocolate e café em uma combinação marcante, aromática e equilibrada.",
     preco: "",
     imagem: "",
-    categoria: "Especial",
+    categoria: "Com café",
     badge: "",
   },
   {
@@ -36,7 +34,7 @@ const produtos = [
     descricao: "Um brigadeiro artesanal com o sabor característico e a textura da castanha de caju.",
     preco: "",
     imagem: "",
-    categoria: "Nobre",
+    categoria: "Premium",
     badge: "",
   },
   {
@@ -45,7 +43,7 @@ const produtos = [
     descricao: "A suavidade do leite em pó combinada com o sabor marcante do creme de avelã com cacau.",
     preco: "",
     imagem: "",
-    categoria: "Avelã",
+    categoria: "Premium",
     badge: "",
   },
   {
@@ -54,21 +52,28 @@ const produtos = [
     descricao: "Uma combinação agridoce e surpreendente, que equilibra o sabor intenso do gorgonzola com a doçura frutada da geleia de amora.",
     preco: "",
     imagem: "",
-    categoria: "Especial",
+    categoria: "Premium",
     badge: "Agridoce",
   },
 ];
 
 function buildWhatsAppLink(message = "") {
-  if (!WHATSAPP_NUMBER) {
-    console.warn(
-      "Configure a constante WHATSAPP_NUMBER em script.js antes de usar os links do WhatsApp."
-    );
-    return "#contato";
-  }
-
   const text = encodeURIComponent(message);
   return `https://wa.me/${WHATSAPP_NUMBER}?text=${text}`;
+}
+
+function escapeHTML(texto) {
+  return String(texto).replace(/[&<>"']/g, (caractere) => {
+    const entidades = {
+      "&": "&amp;",
+      "<": "&lt;",
+      ">": "&gt;",
+      '"': "&quot;",
+      "'": "&#39;",
+    };
+
+    return entidades[caractere];
+  });
 }
 
 function renderProducts() {
@@ -80,14 +85,17 @@ function renderProducts() {
 
   productGrid.innerHTML = produtos
     .map((produto) => {
-      const priceLabel = produto.preco ? `R$ ${produto.preco}` : "Consulte o valor";
+      const priceMarkup = produto.preco
+        ? `<span class="product-price">R$ ${escapeHTML(produto.preco)}</span>`
+        : "";
       const message = `Olá! Gostaria de saber o valor e a disponibilidade do ${produto.nome}.`;
       const href = buildWhatsAppLink(message);
-      const hasNumber = Boolean(WHATSAPP_NUMBER);
-      const badgeMarkup = produto.badge ? `<span class="chip">${produto.badge}</span>` : "";
+      const badgeMarkup = produto.badge
+        ? `<span class="chip">${escapeHTML(produto.badge)}</span>`
+        : "";
       const imageMarkup = produto.imagem
-        ? `<img src="${produto.imagem}" alt="${produto.nome}" loading="lazy" />`
-        : `<div class="product-image-placeholder variant-${produto.id}"><span>${produto.nome}</span></div>`;
+        ? `<img src="${escapeHTML(produto.imagem)}" alt="${escapeHTML(produto.nome)}" loading="lazy" width="600" height="600" />`
+        : `<div class="product-image-placeholder variant-${produto.id}"><span>${escapeHTML(produto.nome)}</span></div>`;
 
       return `
         <article class="product-card">
@@ -98,22 +106,22 @@ function renderProducts() {
           <div class="product-body">
             <div class="product-header">
               <div>
-                <p class="product-category">${produto.categoria}</p>
-                <h3 class="product-name">${produto.nome}</h3>
+                <p class="product-category">${escapeHTML(produto.categoria)}</p>
+                <h3 class="product-name">${escapeHTML(produto.nome)}</h3>
               </div>
               ${badgeMarkup}
             </div>
 
-            <p class="product-description">${produto.descricao}</p>
+            <p class="product-description">${escapeHTML(produto.descricao)}</p>
 
             <div class="product-footer">
-              <span class="product-price">${priceLabel}</span>
+              ${priceMarkup}
               <a
-                class="product-action ${hasNumber ? "" : "is-disabled"}"
+                class="product-action"
                 href="${href}"
-                target="${hasNumber ? "_blank" : "_self"}"
-                rel="${hasNumber ? "noopener noreferrer" : ""}"
-                aria-label="Pedir ${produto.nome} pelo WhatsApp"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Pedir ${escapeHTML(produto.nome)} pelo WhatsApp"
               >
                 Pedir pelo WhatsApp
               </a>
@@ -133,58 +141,54 @@ function setupNavigation() {
     return;
   }
 
+  const closeMenu = (returnFocus = false) => {
+    mainNav.classList.remove("is-open");
+    navToggle.setAttribute("aria-expanded", "false");
+    navToggle.setAttribute("aria-label", "Abrir menu");
+
+    if (returnFocus) {
+      navToggle.focus();
+    }
+  };
+
   navToggle.addEventListener("click", () => {
     const isOpen = mainNav.classList.toggle("is-open");
     navToggle.setAttribute("aria-expanded", String(isOpen));
+    navToggle.setAttribute("aria-label", isOpen ? "Fechar menu" : "Abrir menu");
   });
 
   mainNav.querySelectorAll("a").forEach((link) => {
     link.addEventListener("click", () => {
-      mainNav.classList.remove("is-open");
-      navToggle.setAttribute("aria-expanded", "false");
+      closeMenu();
     });
   });
-}
 
-function setWhatsAppLinksFromButton(button) {
-  const message = "Olá! Gostaria de conhecer os sabores e fazer meu pedido.";
-  const targetLink = buildWhatsAppLink(message);
-
-  if (!WHATSAPP_NUMBER) {
-    button.classList.add("is-disabled");
-    button.setAttribute("aria-disabled", "true");
-    button.setAttribute("href", "#contato");
-    return;
-  }
-
-  button.href = targetLink;
-  button.setAttribute("target", "_blank");
-  button.setAttribute("rel", "noopener noreferrer");
-}
-
-function setupExternalLinks() {
-  const instagramLinks = document.querySelectorAll('a[href="https://www.instagram.com/neusasweetness/"]');
-
-  instagramLinks.forEach((link) => {
-    link.href = INSTAGRAM_PROFILE;
-    link.setAttribute("target", "_blank");
-    link.setAttribute("rel", "noopener noreferrer");
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && mainNav.classList.contains("is-open")) {
+      closeMenu(true);
+    }
   });
 
-  const whatsappButtons = document.querySelectorAll(
-    ".header-button, .primary-button, .secondary-button, .floating-whatsapp, .social-link[href='#contato']"
-  );
-
-  whatsappButtons.forEach((button) => {
-    if (button.id === "floating-whatsapp" || button.getAttribute("aria-label") === "WhatsApp") {
-      setWhatsAppLinksFromButton(button);
-      return;
+  document.addEventListener("click", (event) => {
+    if (
+      mainNav.classList.contains("is-open") &&
+      event.target instanceof Node &&
+      !mainNav.contains(event.target) &&
+      !navToggle.contains(event.target)
+    ) {
+      closeMenu();
     }
+  });
+}
 
-    const href = button.getAttribute("href");
-    if (href === "#contato") {
-      setWhatsAppLinksFromButton(button);
-    }
+function setupWhatsAppLinks() {
+  const defaultMessage = "Olá! Gostaria de conhecer os sabores e fazer meu pedido.";
+
+  document.querySelectorAll("[data-whatsapp]").forEach((link) => {
+    const message = link.dataset.whatsappMessage || defaultMessage;
+    link.href = buildWhatsAppLink(message);
+    link.setAttribute("target", "_blank");
+    link.setAttribute("rel", "noopener noreferrer");
   });
 }
 
@@ -198,6 +202,6 @@ function setCurrentYear() {
 document.addEventListener("DOMContentLoaded", () => {
   renderProducts();
   setupNavigation();
-  setupExternalLinks();
+  setupWhatsAppLinks();
   setCurrentYear();
 });
