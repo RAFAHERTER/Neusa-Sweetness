@@ -166,6 +166,12 @@ p {
   color: var(--chocolate-900);
 }
 
+.brand,
+.main-nav a,
+.header-button {
+  white-space: nowrap;
+}
+
 .brand-mark {
   width: 40px;
   height: 40px;
@@ -631,7 +637,7 @@ p {
   }
 }
 
-@media (max-width: 760px) {
+@media (max-width: 1100px) {
   .nav-toggle {
     display: flex;
   }
@@ -645,7 +651,7 @@ p {
     flex-direction: column;
     align-items: flex-start;
     padding: 1rem;
-    background: rgba(255, 250, 244, 0.98);
+    background: var(--panel);
     border: 1px solid var(--border);
     border-radius: var(--radius-md);
     box-shadow: var(--shadow);
@@ -667,7 +673,9 @@ p {
   .header-actions {
     display: none;
   }
+}
 
+@media (max-width: 760px) {
   .hero-layout,
   .about-layout,
   .product-grid {
