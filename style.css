@@ -19,6 +19,13 @@
   box-sizing: border-box;
 }
 
+.sprite {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -138,8 +145,7 @@ p {
   position: sticky;
   top: 0;
   z-index: 30;
-  background: rgba(253, 246, 240, 0.96);
-  backdrop-filter: blur(10px);
+  background: var(--bg-cream);
   border-bottom: 1px solid var(--border);
 }
 
@@ -147,7 +153,7 @@ p {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  min-height: 82px;
+  min-height: 72px;
   gap: 1rem;
 }
 
