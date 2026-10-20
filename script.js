@@ -66,36 +66,38 @@ function setupWhatsAppLinks() {
 
 function setupMediaCarousels() {
   document.querySelectorAll(".media-carousel").forEach((carousel) => {
-    const images = Array.from(carousel.querySelectorAll("img"));
+    const slides = Array.from(carousel.children).filter((child) =>
+      child.matches("img, [data-carousel-slide]"),
+    );
     const prevButton = carousel.querySelector("[data-carousel-prev]");
     const nextButton = carousel.querySelector("[data-carousel-next]");
 
-    if (!images.length) {
+    if (!slides.length) {
       prevButton?.setAttribute("hidden", "true");
       nextButton?.setAttribute("hidden", "true");
       return;
     }
 
-    images.forEach((image, index) => {
-      image.classList.toggle("is-active", index === 0);
+    slides.forEach((slide, index) => {
+      slide.classList.toggle("is-active", index === 0);
     });
 
-    if (images.length <= 1) {
+    if (slides.length <= 1) {
       prevButton?.setAttribute("hidden", "true");
       nextButton?.setAttribute("hidden", "true");
       return;
     }
 
-    let currentIndex = images.findIndex((image) => image.classList.contains("is-active"));
+    let currentIndex = slides.findIndex((slide) => slide.classList.contains("is-active"));
     if (currentIndex < 0) {
       currentIndex = 0;
-      images[0].classList.add("is-active");
+      slides[0].classList.add("is-active");
     }
 
     const showImage = (nextIndex) => {
-      currentIndex = (nextIndex + images.length) % images.length;
-      images.forEach((image, index) => {
-        image.classList.toggle("is-active", index === currentIndex);
+      currentIndex = (nextIndex + slides.length) % slides.length;
+      slides.forEach((slide, index) => {
+        slide.classList.toggle("is-active", index === currentIndex);
       });
     };
 
