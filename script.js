@@ -64,8 +64,8 @@ function setupWhatsAppLinks() {
   });
 }
 
-function setupProductCarousels() {
-  document.querySelectorAll(".product-image").forEach((carousel) => {
+function setupMediaCarousels() {
+  document.querySelectorAll(".media-carousel").forEach((carousel) => {
     const images = Array.from(carousel.querySelectorAll("img"));
     const prevButton = carousel.querySelector("[data-carousel-prev]");
     const nextButton = carousel.querySelector("[data-carousel-next]");
@@ -76,39 +76,36 @@ function setupProductCarousels() {
       return;
     }
 
+    images.forEach((image, index) => {
+      image.classList.toggle("is-active", index === 0);
+    });
+
     if (images.length <= 1) {
-      images.forEach((image) => {
-        image.hidden = false;
-      });
       prevButton?.setAttribute("hidden", "true");
       nextButton?.setAttribute("hidden", "true");
       return;
     }
 
-    let currentIndex = images.findIndex((image) => !image.hidden);
+    let currentIndex = images.findIndex((image) => image.classList.contains("is-active"));
     if (currentIndex < 0) {
       currentIndex = 0;
-      images[0].hidden = false;
+      images[0].classList.add("is-active");
     }
 
-    const showImage = (direction) => {
-      currentIndex = (currentIndex + direction + images.length) % images.length;
+    const showImage = (nextIndex) => {
+      currentIndex = (nextIndex + images.length) % images.length;
       images.forEach((image, index) => {
-        image.hidden = index !== currentIndex;
+        image.classList.toggle("is-active", index === currentIndex);
       });
     };
 
     prevButton?.removeAttribute("hidden");
     nextButton?.removeAttribute("hidden");
     prevButton?.addEventListener("click", () => {
-      showImage(-1);
+      showImage(currentIndex - 1);
     });
     nextButton?.addEventListener("click", () => {
-      showImage(1);
-    });
-
-    images.forEach((image, index) => {
-      image.hidden = index !== currentIndex;
+      showImage(currentIndex + 1);
     });
   });
 }
@@ -122,7 +119,7 @@ function setCurrentYear() {
 
 document.addEventListener("DOMContentLoaded", () => {
   setupNavigation();
-  setupProductCarousels();
+  setupMediaCarousels();
   setupWhatsAppLinks();
   setCurrentYear();
 });

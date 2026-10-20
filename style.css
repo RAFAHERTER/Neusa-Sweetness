@@ -57,6 +57,10 @@ button {
   font: inherit;
 }
 
+[hidden] {
+  display: none !important;
+}
+
 .container {
   width: var(--container);
   margin: 0 auto;
@@ -285,14 +289,23 @@ p {
   margin-top: 0.5rem;
 }
 
+.media-carousel {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: linear-gradient(135deg, var(--rose-100), var(--rose-300));
+}
+
+.media-carousel--square {
+  aspect-ratio: 1 / 1;
+}
+
 .hero-image-card,
-.photo-placeholder,
-.product-image-placeholder {
+.photo-placeholder {
   position: relative;
   width: 100%;
   height: 100%;
   border-radius: var(--radius-lg);
-  background: linear-gradient(135deg, var(--rose-100), var(--rose-300));
   overflow: hidden;
 }
 
@@ -304,9 +317,15 @@ p {
   box-shadow: var(--shadow);
 }
 
+.hero-image-card,
+.photo-placeholder,
+.media-carousel {
+  background: linear-gradient(135deg, var(--rose-100), var(--rose-300));
+}
+
 .floating-badge {
   position: relative;
-  z-index: 2;
+  z-index: 3;
   display: inline-flex;
   align-items: center;
   padding: 0.7rem 1rem;
@@ -365,34 +384,29 @@ p {
   box-shadow: 0 16px 38px rgba(43, 27, 20, 0.12);
 }
 
-.product-image {
-  position: relative;
-  aspect-ratio: 4 / 3;
-  overflow: hidden;
-}
-
-.product-image > img {
+.media-carousel > img {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  opacity: 0;
+  visibility: hidden;
+  z-index: 0;
+  transition: opacity 0s linear 0.6s, visibility 0s linear 0.6s;
 }
 
-.product-image > img[hidden] {
-  display: none;
-}
-
-.product-image-placeholder {
-  position: absolute;
-  inset: 0;
-  aspect-ratio: 4 / 3;
+.media-carousel > img.is-active {
+  opacity: 1;
+  visibility: visible;
+  z-index: 1;
+  transition: opacity 0.6s ease;
 }
 
 .carousel-control {
   position: absolute;
   top: 50%;
-  z-index: 1;
+  z-index: 2;
   display: grid;
   place-items: center;
   width: 2rem;
@@ -770,6 +784,10 @@ p {
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+
+  .media-carousel > img {
+    transition: none;
   }
 
   *, *::before, *::after {
