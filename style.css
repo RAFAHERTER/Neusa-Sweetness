@@ -448,9 +448,9 @@ p {
 }
 
 .product-body {
-  display: grid;
+  display: flex;
   flex: 1;
-  align-content: start;
+  flex-direction: column;
   gap: 0.9rem;
   padding: 1.25rem 1.2rem 1.35rem;
 }
@@ -482,16 +482,19 @@ p {
 }
 
 .cart-add-controls {
-  display: flex;
-  align-items: center;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: stretch;
   gap: 0.6rem;
   margin-top: auto;
 }
 
 .quantity-control {
   display: inline-flex;
+  width: 100%;
+  min-width: 0;
+  height: 2.625rem;
   align-items: center;
-  justify-self: start;
   overflow: hidden;
   border: 1px solid var(--border);
   border-radius: 999px;
@@ -499,7 +502,8 @@ p {
 }
 
 .quantity-control button {
-  width: 2.5rem;
+  flex: 0 0 2.25rem;
+  width: 2.25rem;
   height: 2.5rem;
   border: 0;
   background: transparent;
@@ -509,7 +513,9 @@ p {
 }
 
 .quantity-control input {
-  width: 3rem;
+  flex: 1;
+  width: 1rem;
+  min-width: 0;
   height: 2.5rem;
   padding: 0;
   border: 0;
@@ -528,12 +534,18 @@ p {
 }
 
 .product-action {
-  width: auto;
-  min-height: 2.5rem;
-  padding: 0.6rem 0.9rem;
+  width: 100%;
+  min-width: 0;
+  flex: none;
+  height: 2.625rem;
+  min-height: 2.625rem;
+  padding: 0.2rem 0.4rem;
   border: 0;
   cursor: pointer;
-  white-space: nowrap;
+  white-space: normal;
+  font-size: 0.75rem;
+  line-height: 1.1;
+  text-align: center;
 }
 
 .cart-panel {
@@ -946,13 +958,6 @@ p {
   .secondary-button,
   .product-action {
     width: 100%;
-  }
-
-  .cart-add-controls .product-action {
-    width: auto;
-    flex: 1;
-    padding-inline: 0.65rem;
-    font-size: 0.85rem;
   }
 
   .product-footer {
