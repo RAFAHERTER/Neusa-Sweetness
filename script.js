@@ -117,16 +117,40 @@ function setupCart() {
   const cartItemsElement = document.getElementById("cart-items");
   const cartEmptyMessage = document.getElementById("cart-empty");
   const cartTotalElement = document.getElementById("cart-total");
+  const cartPriceLabel = document.getElementById("cart-price-label");
+  const cartPriceTotal = document.getElementById("cart-price-total");
   const checkoutLink = document.getElementById("cart-checkout");
 
-  if (!cartItemsElement || !cartEmptyMessage || !cartTotalElement || !(checkoutLink instanceof HTMLAnchorElement)) {
+  if (
+    !cartItemsElement ||
+    !cartEmptyMessage ||
+    !cartTotalElement ||
+    !cartPriceLabel ||
+    !cartPriceTotal ||
+    !(checkoutLink instanceof HTMLAnchorElement)
+  ) {
     return;
   }
 
+  const currencyFormatter = new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" });
+  const productPrices = new Map();
+
   document.querySelectorAll(".cart-add-controls").forEach((controls) => {
-    const name = controls.closest(".product-card")?.querySelector("h3")?.textContent.trim();
+    const card = controls.closest(".product-card");
+    const name = card?.querySelector("h3")?.textContent.trim();
     if (!name) {
       return;
+    }
+
+    const minPriceCents = Number(card.dataset.priceMinCents ?? card.dataset.priceCents);
+    const maxPriceCents = Number(card.dataset.priceMaxCents ?? card.dataset.priceCents);
+    if (
+      Number.isSafeInteger(minPriceCents) &&
+      Number.isSafeInteger(maxPriceCents) &&
+      minPriceCents >= 0 &&
+      maxPriceCents >= minPriceCents
+    ) {
+      productPrices.set(name, { min: minPriceCents, max: maxPriceCents });
     }
 
     controls.querySelector(".quantity-control")?.setAttribute("aria-label", `Quantidade de ${name}`);
@@ -163,7 +187,10 @@ function setupCart() {
 
   const renderCart = () => {
     let totalQuantity = 0;
-    const orderLines = Array.from(cart, ([name, quantity]) => `• ${name}: ${quantity}`);
+    let estimatedMinTotalCents = 0;
+    let estimatedMaxTotalCents = 0;
+    let hasUnpricedItems = false;
+    const orderLines = [];
 
     cartItemsElement.replaceChildren();
     cart.forEach((quantity, name) => {
@@ -175,6 +202,27 @@ function setupCart() {
       const itemName = document.createElement("span");
       itemName.className = "cart-item-name";
       itemName.textContent = name;
+
+      const itemPrice = document.createElement("span");
+      itemPrice.className = "cart-item-price";
+      const priceRange = productPrices.get(name);
+      if (priceRange === undefined) {
+        hasUnpricedItems = true;
+        itemPrice.textContent = "Valor sob consulta";
+        orderLines.push(`• ${name}: ${quantity} (valor sob consulta)`);
+      } else {
+        const lineMinTotalCents = priceRange.min * quantity;
+        const lineMaxTotalCents = priceRange.max * quantity;
+        estimatedMinTotalCents += lineMinTotalCents;
+        estimatedMaxTotalCents += lineMaxTotalCents;
+        if (priceRange.min === priceRange.max) {
+          itemPrice.textContent = `${currencyFormatter.format(priceRange.min / 100)} cada · ${currencyFormatter.format(lineMinTotalCents / 100)}`;
+          orderLines.push(`• ${name}: ${quantity} × ${currencyFormatter.format(priceRange.min / 100)} = ${currencyFormatter.format(lineMinTotalCents / 100)}`);
+        } else {
+          itemPrice.textContent = `${currencyFormatter.format(priceRange.min / 100)} a ${currencyFormatter.format(priceRange.max / 100)} cada · ${currencyFormatter.format(lineMinTotalCents / 100)} a ${currencyFormatter.format(lineMaxTotalCents / 100)}`;
+          orderLines.push(`• ${name}: ${quantity} × ${currencyFormatter.format(priceRange.min / 100)} a ${currencyFormatter.format(priceRange.max / 100)} = ${currencyFormatter.format(lineMinTotalCents / 100)} a ${currencyFormatter.format(lineMaxTotalCents / 100)}`);
+        }
+      }
 
       const actions = document.createElement("div");
       actions.className = "cart-item-actions";
@@ -190,13 +238,17 @@ function setupCart() {
       const removeButton = createCartButton("Remover", `Remover ${name} do carrinho`, "cartLineRemove", name, "cart-item-remove");
 
       actions.append(decreaseButton, quantityText, increaseButton, removeButton);
-      item.append(itemName, actions);
+      item.append(itemName, itemPrice, actions);
       cartItemsElement.append(item);
     });
 
     cartItemsElement.hidden = cart.size === 0;
     cartEmptyMessage.hidden = cart.size > 0;
     cartTotalElement.textContent = String(totalQuantity);
+    cartPriceLabel.textContent = hasUnpricedItems ? "Subtotal estimado:" : "Valor estimado:";
+    cartPriceTotal.textContent = estimatedMinTotalCents === estimatedMaxTotalCents
+      ? currencyFormatter.format(estimatedMinTotalCents / 100)
+      : `${currencyFormatter.format(estimatedMinTotalCents / 100)} a ${currencyFormatter.format(estimatedMaxTotalCents / 100)}`;
     document.querySelectorAll("[data-cart-count]").forEach((count) => {
       count.textContent = String(totalQuantity);
     });
@@ -207,6 +259,9 @@ function setupCart() {
         "",
         ...orderLines,
         "",
+        `${hasUnpricedItems ? "Subtotal estimado (não inclui itens sob consulta)" : "Valor estimado"}: ${estimatedMinTotalCents === estimatedMaxTotalCents
+          ? currencyFormatter.format(estimatedMinTotalCents / 100)
+          : `${currencyFormatter.format(estimatedMinTotalCents / 100)} a ${currencyFormatter.format(estimatedMaxTotalCents / 100)}`}`,
         "Pode me informar os valores e a disponibilidade?",
       ].join("\n");
       checkoutLink.href = buildWhatsAppLink(message);
