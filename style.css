@@ -281,6 +281,7 @@ p {
 .about-copy {
   display: grid;
   gap: 1.2rem;
+  text-align: justify;
 }
 
 .lead {
